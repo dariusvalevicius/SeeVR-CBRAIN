@@ -1,1 +1,0 @@
-neurodocker generate docker --pkg-manager apt --base-image neurodebian:buster --fsl version=6.0.5 --matlabmcr version=2021b --user nonroot > Dockerfile

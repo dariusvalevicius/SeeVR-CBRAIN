@@ -28,7 +28,7 @@ function Gas_CVR_wrapper(time_CO2, data_CO2, mdcBOLD, GMmask, WMmask, CSFmask, m
            
 
 %%
-addpath(genpath('/NAS/home/al_reza/CBRAIN/1-seeVR/Resource/seeVR-main'))
+% addpath(genpath('/NAS/home/al_reza/CBRAIN/1-seeVR/Resource/seeVR-main'))
 
 dir = [pwd '/']; % I assume that the current folder is the folder including all files
 
