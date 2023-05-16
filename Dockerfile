@@ -6,9 +6,10 @@ USER root
 COPY ./standalone/ /opt/seevr/
 
 # Set execute permissions
-RUN chmod -R a+x /opt/seevr/
+#RUN chmod -R a+x /opt/seevr/
+RUN chown -R nonroot: /opt/seevr
 
 # Set working directory
-WORKDIR /opt/seevr/
+WORKDIR /opt/seevr
 
 USER nonroot

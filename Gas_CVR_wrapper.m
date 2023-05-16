@@ -1,4 +1,4 @@
-function Gas_CVR_wrapper(time_CO2, data_CO2, mdcBOLD, GMmask, WMmask, CSFmask, mbBOLDmask, mpfilename, motioncorr, dispersion, lim_DoI, LVpercentile, spatialdim, normWindow, interp_factor, corrthresh, lagthresh,lag)
+function Gas_CVR_wrapper(dir, time_CO2, data_CO2, mdcBOLD, GMmask, WMmask, CSFmask, mbBOLDmask, mpfilename, motioncorr, dispersion, lim_DoI, LVpercentile, spatialdim, normWindow, interp_factor, corrthresh, lagthresh,lag)
 %%
 % Inputs:
    % - dir = directory of all MRI data
@@ -25,12 +25,25 @@ function Gas_CVR_wrapper(time_CO2, data_CO2, mdcBOLD, GMmask, WMmask, CSFmask, m
    %               [lowlagthresh highlagthresh] i.e. [-2 2]
    %  -lag = Lag thresholds (in units of TR) for lag map creation
    %         [lowerlg upperlag] i.e. [-3 25]
-           
+
+dispersion = str2double(strsplit(dispersion, ','));
+lim_DoI = str2double(strsplit(lim_DoI, ','));
+normWindow = str2double(strsplit(normWindow, ','));
+corrthresh = str2double(strsplit(corrthresh, ','));
+lagthresh = str2double(strsplit(lagthresh, ','));
+lag = str2double(strsplit(lag, ','));
+
+corrthresh = str2double(corrthresh);
+interp_factor = str2double(interp_factor);
+LVpercentile = str2double(LVpercentile);
+motioncorr = str2double(motioncorr);
+spatialdim = str2double(spatialdim);
+
 
 %%
 % addpath(genpath('/NAS/home/al_reza/CBRAIN/1-seeVR/Resource/seeVR-main'))
 
-dir = [pwd '/']; % I assume that the current folder is the folder including all files
+dir = [pwd '/' dir '/']; % I assume that the current folder is the folder including all files
 
 % initialize the opts structure (!)
 global opts
@@ -179,7 +192,7 @@ opts.plot = 0; %shows hrf
 xdata = opts.TR:opts.TR:opts.TR*size(rBOLD,4);
 
 % IMPORTANT use the index values to isolate the corresponding CO2/O2 values
-PetCO2 = CO2trace(1,idx(1):idx(2));
+PetCO2 = CO2trace(idx(1):idx(2));
 % PetO2 = O2trace(1,idx(1):idx(2));
 
 %% 6) Removing contributions using a large vessel mask
@@ -258,10 +271,10 @@ opts.load_probe = 0; %default is 0
 
 % For creating the optimized BOLD regressor, we will only use GM voxels for
 % maximum CO2 sensitivity. We will also remove large vessel contributions.
-mGMmask = GMmask.*mWBmask;
+mGMmask = int16(GMmask).*int16(mWBmask);
 %remove CSF from analysis
 mCSFmask = CSFmask -1; mCSFmask = abs(mCSFmask);
-mask = mCSFmask.*mWBmask;
+mask = int16(mCSFmask).*int16(mWBmask);
 
 %Perform hemodyamic analysis
 % The lagCVR function saves all maps and also returns them in a struct for
