@@ -16,6 +16,12 @@ Run Docker container interactively:
 
     docker run -it -v $PWD/data:/opt/seevr/data dvalev/seevr-cbrain:0.1.0
 
+Command to run preprocess_BIDS.sh in container:
+
+    ./preprocess_BIDS.sh data/sub-006
+    
+    ./preprocess_BIDS.sh data/sub-006 outdir data/CO2.txt data/time.txt 0.3 5,10,15 1,350 97 3 5,25 3 0.6 -2,2 -3,25
+
 Command to run gas_cvr within container:
 
     ./run_gas_cvr.sh /opt/MCR-2021b/v911/ \[arguments\]
