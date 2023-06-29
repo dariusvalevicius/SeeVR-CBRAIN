@@ -286,5 +286,8 @@ mask = int16(mCSFmask).*int16(mWBmask);
 % functions themselves) can be saved to compare between runs.
 
 save([opts.resultsdir, 'processing_options.mat'], 'opts');
+close all;
+
+disp("Finished Gas_CVR analysis.");
 
 end

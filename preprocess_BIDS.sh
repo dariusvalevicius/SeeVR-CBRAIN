@@ -43,12 +43,19 @@ echo "Preparing output directory..."
 cd ${VDIR}
 
 mkdir ${OUTDIR}
-cp ${DDIR}/func/BOLD_mcf.nii.gz ${OUTDIR}/BOLD_mcf.nii.gz
 cp ${DDIR}/func/BOLD_mcf.par ${OUTDIR}/BOLD_mcf.par
-cp ${DDIR}/func/BOLD_mean_brain_mask.nii.gz ${OUTDIR}/BOLD_mean_brain_mask.nii.gz
-cp ${DDIR}/func/brain_seg_0.nii.gz ${OUTDIR}/brain_seg_0.nii.gz
-cp ${DDIR}/func/brain_seg_1.nii.gz ${OUTDIR}/brain_seg_1.nii.gz
-cp ${DDIR}/func/brain_seg_2.nii.gz ${OUTDIR}/brain_seg_2.nii.gz
+
+# cp ${DDIR}/func/BOLD_mcf.nii.gz ${OUTDIR}/BOLD_mcf.nii.gz
+# cp ${DDIR}/func/BOLD_mean_brain_mask.nii.gz ${OUTDIR}/BOLD_mean_brain_mask.nii.gz
+# cp ${DDIR}/func/brain_seg_0.nii.gz ${OUTDIR}/brain_seg_0.nii.gz
+# cp ${DDIR}/func/brain_seg_1.nii.gz ${OUTDIR}/brain_seg_1.nii.gz
+# cp ${DDIR}/func/brain_seg_2.nii.gz ${OUTDIR}/brain_seg_2.nii.gz
+
+fslmaths ${DDIR}/func/BOLD_mcf.nii.gz ${OUTDIR}/BOLD_mcf.nii.gz -odt float
+fslmaths ${DDIR}/func/BOLD_mean_brain_mask.nii.gz ${OUTDIR}/BOLD_mean_brain_mask.nii.gz -odt float
+fslmaths ${DDIR}/func/brain_seg_0.nii.gz ${OUTDIR}/brain_seg_0.nii.gz -odt float
+fslmaths ${DDIR}/func/brain_seg_1.nii.gz ${OUTDIR}/brain_seg_1.nii.gz -odt float
+fslmaths ${DDIR}/func/brain_seg_2.nii.gz ${OUTDIR}/brain_seg_2.nii.gz -odt float
 
 cp ${CO2} ${OUTDIR}/CO2.txt
 cp ${TIME} ${OUTDIR}/time.txt
