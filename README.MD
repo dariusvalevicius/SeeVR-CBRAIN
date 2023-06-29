@@ -18,7 +18,7 @@ From the project root directory, run a Docker Build command to construct the ima
 
 Docker build command:
 
-    docker build -t dvalev/seevr-cbrain:\[version tag] .
+    docker build -t dvalev/seevr-cbrain:[version tag] .
 
 ### Testing locally:
 
@@ -26,7 +26,7 @@ To test the container, you can run it locally in interactive mode and run comman
 
 Run Docker container interactively:
 
-    docker run -it -v $PWD:/opt/seevr dvalev/seevr-cbrain:\[version tag]
+    docker run -it -v $PWD:/opt/seevr dvalev/seevr-cbrain:[version tag]
 
 Command to run preprocess_BIDS.sh in container:
     
@@ -34,7 +34,7 @@ Command to run preprocess_BIDS.sh in container:
 
 Command to run gas_cvr within container:
 
-    ./run_gas_cvr.sh /opt/MCR-2021b/v911/ \[arguments\]
+    ./run_gas_cvr.sh /opt/MCR-2021b/v911/ [arguments]
 
     ./run_gas_cvr.sh /opt/MCR-2021b/v911/ data time.txt CO2.txt BOLD_applytopup.nii.gz BOLD_mean_brain_seg_0.nii.gz BOLD_mean_brain_seg_1.nii.gz BOLD_mean_brain_seg_2.nii.gz BOLD_mean_brain_mask.nii.gz BOLD_mcf.par 0.3 5,10,15 1,350 97 3 5,25 3 0.6 -2,2 -3,25
 
@@ -44,9 +44,9 @@ Run in MATLAB:
     
 ### Boutiques descriptor (instructions):
 
-A boutiques descriptor needs to call the Docker image 'dvalev/seevr-cbrain:\[version]' and run in in Singularity. The entrypoint command for the container is:
+A boutiques descriptor needs to call the Docker image 'dvalev/seevr-cbrain:[version]' and run in in Singularity. The entrypoint command for the container is:
 
-    ./preprocess_BIDS.sh \[BIDS input] \[outdir] \[CO2 input] \[time input] \[motioncorr] \[dispersion] \[lim\_DoI] \[LVpercentile] \[spatialdim] \[normWindow] \[interp\_factor] \[corrthresh] \[lagthresh] \[-lag]
+    ./preprocess_BIDS.sh [BIDS input] [outdir] [CO2 input] [time input] [motioncorr] [dispersion] [lim\_DoI] [LVpercentile] [spatialdim] [normWindow] [interp_factor] [corrthresh] [lagthresh] [-lag]
     
 For example:
 
